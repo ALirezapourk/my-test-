@@ -1,6 +1,6 @@
  First making inserting only one recipes using "insertone"
 
-````JavaScript
+```JavaScript
 db.recipes.insertOne([
     {
         "name": "Strawberry Cupcake",
@@ -39,7 +39,7 @@ db.recipes.insertOne([
         ]
     } 
 ])
-````
+```
 
  Just finding the recipe 
 
