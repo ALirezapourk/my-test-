@@ -1,0 +1,209 @@
+ First making inserting only one recipes using "insertone"
+
+````JavaScript
+db.recipes.insertOne([
+    {
+        "name": "Strawberry Cupcake",
+        "cookingTime": 30,
+        "ingredients": [
+            "-Batter: ",
+            "250g flour",
+            "200g sugar",
+            "pinch of baking soda",
+            "2tsp baking powder",
+            "pinch of salt",
+            "115g butter", 
+            "2st eggs",
+            "1½tsp vanilla",
+            "170g strawberry",
+            "85g white chacolate.",
+            "120g milk",
+            "",
+            "-Crumble: ",
+            "75g flour",
+            "30g Brown suger",
+            "50g white sugar",
+            "50g butter"
+            
+        ],
+        "steps": [
+            "1. Dice the strawberrys to small cube and set aside.",
+            "2. put the butter in a pan and melt (brown the butter optional) .",
+            "3. combine all the the dry ingredians and mix.",
+            "4. Pour the melted/browned butter and combine till it looks crumbly.",
+            "5. Then add the wet ingridance and mix till a batter forms, and the diced strawberry and chocolate.",
+            "6. make the crumble by combinging everything till it feels like swet sand",
+            "7. Pour the batter in the mold top it with the crumble and put in the over for 13min at 218C then lower the heat to 180c and cook for another 14min or till the toping is golden",
+            "8. Let it cool down and enjoy ;)"
+            
+        ]
+    } 
+])
+````
+
+ Just finding the recipe 
+
+```` JavaScript
+db.recipes.find()
+````
+
+Updating the cooking time  
+Using the "name" to find what we want want to change, then using the "cooking time" category to change what we like update.
+
+````JavaScript
+db.recipes.updateOne(
+    { "name": "Strawberry Cupcake" },
+    { $set: { "cookingTime": 25 } }
+)
+````
+
+And in the end we just delete the recipe
+
+````JavaScript
+db.recipes.deleteOne({ "name": "Strawberry Cupcake" })
+
+`````
+
+## For the second part
+
+inserting many (had to use chat-gbt to fix my spelling mistakes)
+
+````javascript
+db.recipes.insertMany([
+    {
+        "name": "Strawberry Cupcake",
+        "cookingTime": 30,
+        "ingredients": [
+            "-Batter: ",
+            "250g flour",
+            "200g sugar",
+            "pinch of baking soda",
+            "2tsp baking powder",
+            "pinch of salt",
+            "115g butter", 
+            "2 eggs",
+            "1½tsp vanilla",
+            "170g strawberry",
+            "85g white chocolate.",
+            "120g milk",
+            "",
+            "-Crumble: ",
+            "75g flour",
+            "30g brown sugar",
+            "50g white sugar",
+            "50g butter"
+        ],
+        "steps": [
+            "1. Dice the strawberries into small cubes and set aside.",
+            "2. Put the butter in a pan and melt (browning the butter is optional).",
+            "3. Combine all the dry ingredients and mix.",
+            "4. Pour the melted/browned butter and combine until it looks crumbly.",
+            "5. Then add the wet ingredients and mix until a batter forms, then add the diced strawberries and chocolate.",
+            "6. Make the crumble by combining everything until it feels like wet sand.",
+            "7. Pour the batter into the mold, top it with the crumble, and bake for 13 minutes at 218°C, then lower the heat to 180°C and cook for another 14 minutes or until the topping is golden.",
+            "8. Let it cool down and enjoy ;)"
+        ]
+    },
+    {
+        "name": "Pizza Dough",
+        "cookingTime": 30,
+        "ingredients": [
+            "800g flour",
+            "480g water",
+            "10g dry yeast/100g sourdough starter",
+            "20g salt",
+            "10g olive oil"
+        ],
+        "steps": [
+            "1. Add everything, mix until a dough forms.",
+            "2. Knead for 20-25 minutes by hand or 10-15 minutes with a machine.",
+            "3. Cover the bowl with a damp cloth and let it rest overnight (24 hours for best results).",
+            "4. Form into 4 large balls and rest for another 30 minutes before stretching out and baking."
+        ]
+    },
+    {
+        "name": "Kebab Pizza Sauce",
+        "cookingTime": 15,
+        "ingredients": [
+            "2dl Turkish yogurt",
+            "1dl mayo",
+            "1tbsp sriracha",
+            "1 clove of garlic",
+            "½dl Fanta",
+            "kebab seasoning",
+            "salt and pepper to taste",
+            "optional red pepper for extra kick"
+        ],
+        "steps": [
+            "1. Mix everything together in a bowl.",
+            "2. Use as desired :)"
+        ]
+    }
+])
+
+`````
+
+Here updating many and finding the ones i want to update using the "30min". 
+````javascript
+db.Recipes.updateMany( { "cookingTime": 30 }, { $set: { "cookingTime": 60 } } )
+`````
+
+here i remove the old version of the updated ones.
+
+````javascript
+db.recipes.deleteMany({ "cookingTime": 60 })
+
+`````
+
+Wilde card. this one remove every recipes that contain "flour" as an ingredient 
+````js
+db.recipes.deleteMany({ "ingredients": { $regex: /flour/i } })
+
+`````
+
+
+
+### Beskriv hur du har strukturerat din data i MongoDB
+
+I mad the stracture by making the the base called "recipes", every recipe contain "name", "cookingtime," "ingredients" and then "steps" to explain what to do. 
+ingredients and steps are arrays and contain different info. this way i really dont have to "normalies" the info and have it easy to bring out info.  
+
+
+### Jämför kort hur denna struktur skiljer sig från hur du skulle ha gjort i en relationsdatabas
+
+in relation i have to make one table for "recipes" one for "name" and so on.... this way on mongodb is actully really easier to make the.
+
+
+
+### Nämn några skillnader mellan relationsdatabaser och dokumentdatabaser
+
+A major difference is that relational databases use tables, rows, and columns, while MongoDB use collections and documents. Relational databases are strictly structured and use normalization to eliminate redundancy, while document databases allow for more flexible and schema-less storage. A relational database often requires data to be split across multiple tables, whereas a document database can store all related data in a single document. (This part is from HUGO)
+
+### Förklara vad collection, document och field är
+
+A **collection** in MongoDB is a group of documents, similar to a table. A **document** is an entity in side of a collection and corresponds to a row in a relational database but in another format such as Jason. Each **field** in a document is a key-valued, and it can contain various types of data like: strings, numbers, arrays, or even other documents.
+### Beskriv vad det är för skillnad på BSON och JSON
+
+ BSON and JSON are used to represent data, but BSON (Binary JSON) is a binary format that MongoDB uses to store documents. BSON has an advantage and that is bieng faster than JSON, like 32 and 64-bit integers, makeing it better for creating database (Also help from Hogo).
+
+## Analys och reflektion
+## Analysera databasdesignen och nämn några fördelar och några nackdelar med denna typ av databas
+
+Its extramly flexible, making it every easy to "adapt" and add new fields to docs without altering the structure of my collection. the disadvantage is that we can store the same info in few places. so it would be kinda hard 
+
+ The disadvantage is that there can be "data redundancy" since the same information can be stored in multiple places if one is not careful, so it makes it harder to maintain data.
+
+## Reflektera över möjligheter och begränsningar i MongoDB
+
+MongoDB supports rapid development and large-scale data but is less suited for complex data relationships. its best used when speed is an proureti when used.
+
+## Reflektion och utvärdering
+## Vad lärde du dig genom att genomföra projektet?
+
+This project provided first hand experience with MongoDB use and CRUD operations, highlighting its advantages over relational databases in certain applications. The Hard part was using the ***Java***
+
+### Vilka möjligheter ser du för framtida projekt baserat på denna erfarenhet?
+
+This project showed me how MongoDB can be useful for projects where flexibility and quick adaptability, like blogs or e-commerce platforms. Working with cloud services also got me thinking about personal storage solutions. maybe even managing my own data instead of relying on cloud services.
+
+
