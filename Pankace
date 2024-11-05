@@ -1,45 +1,38 @@
  First making inserting only one recipes using "insertone"
 
-```JavaScript
-db.recipes.insertOne([
-    {
-        "name": "Strawberry Cupcake",
-        "cookingTime": 30,
-        "ingredients": [
-            "-Batter: ",
-            "250g flour",
-            "200g sugar",
-            "pinch of baking soda",
-            "2tsp baking powder",
-            "pinch of salt",
-            "115g butter", 
-            "2st eggs",
-            "1½tsp vanilla",
-            "170g strawberry",
-            "85g white chacolate.",
-            "120g milk",
-            "",
-            "-Crumble: ",
-            "75g flour",
-            "30g Brown suger",
-            "50g white sugar",
-            "50g butter"
-            
-        ],
-        "steps": [
-            "1. Dice the strawberrys to small cube and set aside.",
-            "2. put the butter in a pan and melt (brown the butter optional) .",
-            "3. combine all the the dry ingredians and mix.",
-            "4. Pour the melted/browned butter and combine till it looks crumbly.",
-            "5. Then add the wet ingridance and mix till a batter forms, and the diced strawberry and chocolate.",
-            "6. make the crumble by combinging everything till it feels like swet sand",
-            "7. Pour the batter in the mold top it with the crumble and put in the over for 13min at 218C then lower the heat to 180c and cook for another 14min or till the toping is golden",
-            "8. Let it cool down and enjoy ;)"
-            
-        ]
-    } 
-])
-```
+````JavaScript
+db.recipes.insertOne({
+    "name": "Strawberry Cupcake",
+    "cookingTime": 30,
+    "ingredients": [
+        "250g flour",
+        "200g sugar",
+        "pinch of baking soda",
+        "2 tsp baking powder",
+        "pinch of salt",
+        "115g butter", 
+        "2 eggs",
+        "1½ tsp vanilla",
+        "170g strawberry",
+        "85g white chocolate",
+        "120g milk",
+        "75g flour (for crumble)",
+        "30g brown sugar",
+        "50g white sugar",
+        "50g butter (for crumble)"
+    ],
+    "steps": [
+        "1. Dice the strawberries into small cubes and set aside.",
+        "2. Melt the butter in a pan (optional: brown the butter).",
+        "3. Combine all the dry ingredients and mix.",
+        "4. Pour the melted/browned butter and combine until it looks crumbly.",
+        "5. Add the wet ingredients and mix until a batter forms, then add the diced strawberries and chocolate.",
+        "6. Make the crumble by combining everything until it feels like wet sand.",
+        "7. Pour the batter into the mold, top it with the crumble, and bake for 13 minutes at 218°C, then lower the heat to 180°C and cook for another 14 minutes or until the topping is golden.",
+        "8. Let it cool down and enjoy."
+    ]
+});
+````
 
  Just finding the recipe 
 
