@@ -1,5 +1,11 @@
  First making inserting only one recipes using "insertone"
+````c#
+Class car
+{
 
+}
+
+````
 ````JavaScript
 db.recipes.insertOne({
     "name": "Strawberry Cupcake",
